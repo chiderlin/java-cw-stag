@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.uob.ExampleSTAGTests" time="0.148" tests="15" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/chider/code/bristol/cw-stag/target/test-classes:/Users/chider/code/bristol/cw-stag/target/classes:/Users/chider/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/Users/chider/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/chider/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/chider/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/chider/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/Users/chider/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-suite/1.8.2/junit-platform-suite-1.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-suite-api/1.8.2/junit-platform-suite-api-1.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-suite-engine/1.8.2/junit-platform-suite-engine-1.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-suite-commons/1.8.2/junit-platform-suite-commons-1.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-launcher/1.8.2/junit-platform-launcher-1.8.2.jar:/Users/chider/.m2/repository/com/alexmerz/graphviz/dot-parser/1.0/dot-parser-1.0.jar:"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="TW"/>
+    <property name="sun.boot.library.path" value="/Users/chider/Library/Java/JavaVirtualMachines/temurin-17.0.13/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/chider/code/bristol/cw-stag/target/surefire/surefirebooter4616366480304736910.jar /Users/chider/code/bristol/cw-stag/target/surefire 2025-03-30T11-28-24_069-jvmRun1 surefire15060485832906980856tmp surefire_01793676312442842563tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/chider/code/bristol/cw-stag/target/test-classes:/Users/chider/code/bristol/cw-stag/target/classes:/Users/chider/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/Users/chider/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/chider/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/chider/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/chider/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/Users/chider/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-suite/1.8.2/junit-platform-suite-1.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-suite-api/1.8.2/junit-platform-suite-api-1.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-suite-engine/1.8.2/junit-platform-suite-engine-1.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-suite-commons/1.8.2/junit-platform-suite-commons-1.8.2.jar:/Users/chider/.m2/repository/org/junit/platform/junit-platform-launcher/1.8.2/junit-platform-launcher-1.8.2.jar:/Users/chider/.m2/repository/com/alexmerz/graphviz/dot-parser/1.0/dot-parser-1.0.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/chider"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-10-15"/>
+    <property name="java.home" value="/Users/chider/Library/Java/JavaVirtualMachines/temurin-17.0.13/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/chider/code/bristol/cw-stag"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="surefire.real.class.path" value="/Users/chider/code/bristol/cw-stag/target/surefire/surefirebooter4616366480304736910.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="17.0.13+11"/>
+    <property name="user.name" value="chider"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="13.6.1"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-17.0.13+11"/>
+    <property name="localRepository" value="/Users/chider/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/var/folders/5t/7jwtj6dx0vgb0_l47fc3dxyh0000gn/T/"/>
+    <property name="java.version" value="17.0.13"/>
+    <property name="user.dir" value="/Users/chider/code/bristol/cw-stag"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/chider/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="17.0.13+11"/>
+    <property name="java.specification.maintenance.version" value="1"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="testInvalidPlayerNames" classname="edu.uob.ExampleSTAGTests" time="0.054">
+    <system-out><![CDATA[5
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+okay-name
+
+]]></system-out>
+    <system-err><![CDATA[[Error] Invalid player name. Only letters, spaces, apostrophes and hyphens are allowed.[Error] Invalid player name. Only letters, spaces, apostrophes and hyphens are allowed.]]></system-err>
+  </testcase>
+  <testcase name="testExtraneousEntitiesInBuiltInCommand" classname="edu.uob.ExampleSTAGTests" time="0.007">
+    <system-out><![CDATA[5
+[Error] get command requires exactly one argument.]]></system-out>
+  </testcase>
+  <testcase name="testOpenTrapdoorWithKey" classname="edu.uob.ExampleSTAGTests" time="0.011">
+    <system-out><![CDATA[5
+You are in A dark forest. You can see:
+Brass key
+A big tree
+You can access from here:
+cabin
+Players here:
+simon
+
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+simon
+
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+cellar
+Players here:
+simon
+
+]]></system-out>
+  </testcase>
+  <testcase name="testGet" classname="edu.uob.ExampleSTAGTests" time="0.005">
+    <system-out><![CDATA[5
+You are in A log cabin in the woods. You can see:
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+simon
+
+]]></system-out>
+  </testcase>
+  <testcase name="testGoto" classname="edu.uob.ExampleSTAGTests" time="0.007">
+    <system-out><![CDATA[5
+You are in A dark forest. You can see:
+Brass key
+A big tree
+You can access from here:
+cabin
+Players here:
+simon
+
+You are in A dark forest. You can see:
+Brass key
+A big tree
+You can access from here:
+cabin
+Players here:
+simon
+
+]]></system-out>
+  </testcase>
+  <testcase name="testLook" classname="edu.uob.ExampleSTAGTests" time="0.004">
+    <system-out><![CDATA[5
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+simon
+
+]]></system-out>
+  </testcase>
+  <testcase name="testChopTreeWithoutAxe" classname="edu.uob.ExampleSTAGTests" time="0.005">
+    <system-out><![CDATA[5
+You are in A dark forest. You can see:
+Brass key
+A big tree
+You can access from here:
+cabin
+Players here:
+simon
+
+]]></system-out>
+  </testcase>
+  <testcase name="testMultiplePlayersSeparation" classname="edu.uob.ExampleSTAGTests" time="0.006">
+    <system-out><![CDATA[5
+]]></system-out>
+  </testcase>
+  <testcase name="testInvalidCommandHandling" classname="edu.uob.ExampleSTAGTests" time="0.005">
+    <system-out><![CDATA[5
+]]></system-out>
+  </testcase>
+  <testcase name="testChopTreeWithAxe" classname="edu.uob.ExampleSTAGTests" time="0.004">
+    <system-out><![CDATA[5
+You are in A dark forest. You can see:
+Brass key
+A big tree
+You can access from here:
+cabin
+Players here:
+simon
+
+You are in A dark forest. You can see:
+A heavy wooden log
+Brass key
+You can access from here:
+cabin
+Players here:
+simon
+
+]]></system-out>
+  </testcase>
+  <testcase name="testOtherPlayersVisibleInLocation" classname="edu.uob.ExampleSTAGTests" time="0.004">
+    <system-out><![CDATA[5
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+alice
+
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+bob
+alice
+
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+bob
+alice
+
+]]></system-out>
+  </testcase>
+  <testcase name="testOpenTrapdoorWithoutKey" classname="edu.uob.ExampleSTAGTests" time="0.004">
+    <system-out><![CDATA[5
+]]></system-out>
+  </testcase>
+  <testcase name="testLocationTransitions" classname="edu.uob.ExampleSTAGTests" time="0.006">
+    <system-out><![CDATA[5
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+simon
+
+You are in A dark forest. You can see:
+Brass key
+A big tree
+You can access from here:
+cabin
+Players here:
+simon
+
+You are in A dark forest. You can see:
+Brass key
+A big tree
+You can access from here:
+cabin
+Players here:
+simon
+
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+simon
+
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+simon
+
+]]></system-out>
+    <system-err><![CDATA[[Error] don't have 'key' this artifact.
+[Error] don't have access to this location 'cellar'.
+]]></system-err>
+  </testcase>
+  <testcase name="testDropAxe" classname="edu.uob.ExampleSTAGTests" time="0.005">
+    <system-out><![CDATA[5
+You are in A log cabin in the woods. You can see:
+Magic potion
+A razor sharp axe
+Wooden trapdoor
+You can access from here:
+forest
+Players here:
+simon
+
+]]></system-out>
+  </testcase>
+  <testcase name="testInvalidPlayerName" classname="edu.uob.ExampleSTAGTests" time="0.004">
+    <system-out><![CDATA[5
+]]></system-out>
+    <system-err><![CDATA[[Error] Invalid player name. Only letters, spaces, apostrophes and hyphens are allowed.]]></system-err>
+  </testcase>
+</testsuite>

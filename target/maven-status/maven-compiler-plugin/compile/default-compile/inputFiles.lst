@@ -1,0 +1,15 @@
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/entities/GameEntity.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/entities/EntityType.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/GameServer.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/ParseResponse.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/CmdHandler.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/commands/ErrorCommand.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/commands/CustomActionCommand.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/entities/Player.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/GameClient.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/GameState.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/GameAction.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/commands/BuiltInCommand.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/entities/Location.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/commands/GameCommand.java
+/Users/chider/code/bristol/cw-stag/src/main/java/edu/uob/entities/EntityParser.java
