@@ -37,18 +37,6 @@ public class BuiltInCommand extends GameCommand {
   @Override
   public String execute() {
     try {
-      // String patternWithArg = "^(get|goto|drop)\\s+\\w+$";
-      // String patternNoArg = "^(inv|inventory|look|health)$";
-
-      // if (!this.cmd.matches(patternWithArg) && !this.cmd.matches(patternNoArg))
-      // return "[Error] Invalid command.";
-
-      // String[] tokens = this.cmd.trim().split("\\s+");
-      // String action = tokens[0];
-      // Command cmd = commandMap.get(action);
-      // if (tokens.length > 1) {
-      // this.currentArg = tokens[1].trim();
-      // }
       String[] tokens = this.cmd.trim().split("\\s+");
       if (tokens.length == 0) {
         return "[Error] Empty command.";
