@@ -269,7 +269,7 @@ public class BuiltInCommand extends GameCommand {
       res.append(player).append("\n");
     }
 
-    System.out.println(res);
+    // System.out.println(res);
 
     return res.toString();
   }

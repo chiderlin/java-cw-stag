@@ -159,7 +159,7 @@ public class GameAction {
           Element childChildEle = (Element) childElement.item(j);
           NodeList targetElements = childChildEle.getElementsByTagName(targetElementValue);
           if (targetElements.getLength() == 0) {
-            System.out.printf("No <%s> elements found.", targetElements);
+            System.out.printf("No <%s> elements found.\n", targetElementValue);
           } else {
             for (int k = 0; k < targetElements.getLength(); k++) {
               Node targetNode = targetElements.item(k);
@@ -172,30 +172,35 @@ public class GameAction {
       }
       return childMap;
     } catch (Exception e) {
-      e.getStackTrace();
+      e.printStackTrace();
       System.err.printf("[Error] actionParser: ", e.getMessage());
       return childMap;
     }
   }
 
   private void _printActionStructure() {
-    for (Map.Entry<String, Map<String, Map<String, String>>> actionEntry : this.actionsMapping.entrySet()) {
-      String actionName = actionEntry.getKey();
-      System.out.printf("Action: %s\n", actionName);
+    try {
+      for (Map.Entry<String, Map<String, Map<String, String>>> actionEntry : this.actionsMapping.entrySet()) {
+        String actionName = actionEntry.getKey();
+        System.out.printf("Action: %s\n", actionName);
 
-      Map<String, Map<String, String>> categories = actionEntry.getValue();
+        Map<String, Map<String, String>> categories = actionEntry.getValue();
 
-      for (Map.Entry<String, Map<String, String>> categoryEntry : categories.entrySet()) {
-        String category = categoryEntry.getKey();
-        System.out.printf("  Category: %s\n", category);
+        for (Map.Entry<String, Map<String, String>> categoryEntry : categories.entrySet()) {
+          String category = categoryEntry.getKey();
+          System.out.printf("  Category: %s\n", category);
 
-        Map<String, String> items = categoryEntry.getValue();
-        for (Map.Entry<String, String> itemEntry : items.entrySet()) {
-          System.out.printf("    %s: %s\n", itemEntry.getKey(), itemEntry.getValue());
+          Map<String, String> items = categoryEntry.getValue();
+          for (Map.Entry<String, String> itemEntry : items.entrySet()) {
+            System.out.printf("    %s: %s\n", itemEntry.getKey(), itemEntry.getValue());
+          }
         }
       }
+      System.out.println("-----------");
+    } catch (Exception e) {
+      System.err.printf("[Error] Failed to print action structure: %s\n", e.getMessage());
     }
-    System.out.println("-----------");
+
   }
 
 }

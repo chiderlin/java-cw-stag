@@ -22,39 +22,49 @@ public class EntityParser {
   }
 
   private void _printEntityStructure() {
-    for (Map.Entry<String, Location> entry : this.gameMap.entrySet()) {
-      Location location = entry.getValue();
-      System.out.printf("📍 Location: %s\n", location.getName());
-      System.out.printf("  - %s\n", location.getDescription());
+    try {
+      for (Map.Entry<String, Location> entry : this.gameMap.entrySet()) {
+        Location location = entry.getValue();
+        System.out.printf("📍 Location: %s\n", location.getName());
+        System.out.printf("  - %s\n", location.getDescription());
 
-      if (!location.getArtefacts().isEmpty()) {
-        System.out.println("  💎 Artefacts:");
-        location.getArtefacts().forEach((k, v) -> System.out.printf("    ▪ %s: %s\n", k, v.getDescription()));
+        if (!location.getArtefacts().isEmpty()) {
+          System.out.println("  💎 Artefacts:");
+          location.getArtefacts().forEach((k, v) -> System.out.printf("    ▪ %s: %s\n", k, v.getDescription()));
+        }
+
+        if (!location.getFurniture().isEmpty()) {
+          System.out.println("  🪑 Furniture:");
+          location.getFurniture().forEach((k, v) -> System.out.printf("    ▪ %s: %s\n", k, v.getDescription()));
+        }
+
+        if (!location.getCharacters().isEmpty()) {
+          System.out.println("  👤 Characters:");
+          location.getCharacters().forEach((k, v) -> System.out.printf("    ▪ %s: %s\n", k, v.getDescription()));
+        }
+
+        System.out.println("------------------------------------------------");
       }
-
-      if (!location.getFurniture().isEmpty()) {
-        System.out.println("  🪑 Furniture:");
-        location.getFurniture().forEach((k, v) -> System.out.printf("    ▪ %s: %s\n", k, v.getDescription()));
-      }
-
-      if (!location.getCharacters().isEmpty()) {
-        System.out.println("  👤 Characters:");
-        location.getCharacters().forEach((k, v) -> System.out.printf("    ▪ %s: %s\n", k, v.getDescription()));
-      }
-
-      System.out.println("------------------------------------------------");
+    } catch (Exception e) {
+      System.err.printf("[Error] Failed to print entity structure: %s\n", e.getMessage());
     }
+
   }
 
   private void _printPath() {
-    System.out.println("📌 Location Paths:");
-    for (Map.Entry<String, Set<String>> entry : this.locationGraph.entrySet()) {
-      String from = entry.getKey();
-      Set<String> destination = entry.getValue();
-      for (String to : destination) {
-        System.out.printf(" %s -> %s\n", from, to);
+    try {
+      System.out.println("📌 Location Paths:");
+      for (Map.Entry<String, Set<String>> entry : this.locationGraph.entrySet()) {
+        String from = entry.getKey();
+        Set<String> destination = entry.getValue();
+        for (String to : destination) {
+          System.out.printf(" %s -> %s\n", from, to);
+        }
       }
+    } catch (Exception e) {
+      System.err.printf("[Error] Failed to print path: %s\n", e.getMessage());
     }
+
   }
 
   public GameWorld parse(File entitiesFile, boolean debugMode) {
@@ -97,6 +107,12 @@ public class EntityParser {
     ArrayList<Graph> locations = locationSection.getSubgraphs();
     for (int i = 0; i < locations.size(); i++) {
       Graph locationGraph = locations.get(i);
+      // Node locationNode = locationGraph.getNodes(false).get(0);
+      List<Node> nodes = locationGraph.getNodes(false);
+      if (nodes.isEmpty()) {
+        System.err.println("[WARN] Location node is empty, skipping...");
+        continue;
+      }
       Node locationNode = locationGraph.getNodes(false).get(0);
       String locationName = locationNode.getId().getId();
       String locationDesc = locationNode.getAttribute("description");
@@ -152,8 +168,11 @@ public class EntityParser {
       locationGraph.putIfAbsent(fromName, new HashSet<>());
       locationGraph.get(fromName).add(toName);
       Location fromLocation = this.gameMap.get(fromName);
-      if (fromLocation == null)
+      if (fromLocation == null) {
         System.err.printf("[WARN] Location '%s' not found when adding path to '%s'\n", fromName, toName);
+        continue; // skip this path
+      }
+
       fromLocation.addPathTo(toName);
     }
   }
