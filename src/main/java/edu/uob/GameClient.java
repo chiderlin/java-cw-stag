@@ -20,7 +20,7 @@ public final class GameClient {
     public static void main(String[] args) throws IOException {
         String username = args[0];
         while (!Thread.interrupted())
-            handleNextCommand(username);
+            GameClient.handleNextCommand(username);
     }
 
     private static void handleNextCommand(String username) throws IOException {

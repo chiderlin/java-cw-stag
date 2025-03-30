@@ -91,7 +91,7 @@ public class GameAction {
   public Map<String, Map<String, Map<String, String>>> parse(File actionsFile, boolean debugMode) {
 
     try {
-      ParseResponse res = initParser(actionsFile);
+      ParseResponse res = this.initParser(actionsFile);
       if (res.hasError())
         return null;
 
@@ -127,7 +127,7 @@ public class GameAction {
         actionsMapping.put(actionKey, fullActionMap);
       }
       if (debugMode)
-        _printActionStructure();
+        this._printActionStructure();
 
       return actionsMapping;
 

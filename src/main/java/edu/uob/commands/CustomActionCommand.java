@@ -21,10 +21,21 @@ public class CustomActionCommand extends GameCommand {
 
   public String execute() {
     try {
-      String[] tokens = this.cmd.split("\\s+");
       Set<String> inputWords = new HashSet<>();
-      for (String t : tokens)
-        inputWords.add(t.toLowerCase());
+      String commandCopy = this.cmd.trim().toLowerCase();
+      int start = 0;
+
+      for (int i = 0; i < commandCopy.length(); i++) {
+        if (Character.isWhitespace(commandCopy.charAt(i))) {
+          if (start < i) {
+            inputWords.add(commandCopy.substring(start, i));
+          }
+          start = i + 1;
+        }
+      }
+      if (start < commandCopy.length()) {
+        inputWords.add(commandCopy.substring(start));
+      }
 
       Set<Map<String, Map<String, String>>> matchedActions = new LinkedHashSet<>();
       Map<String, Map<String, Map<String, String>>> actionsMapping = this.state.getActions();
@@ -36,7 +47,7 @@ public class CustomActionCommand extends GameCommand {
           continue;
 
         // validate subjects
-        boolean isAllSubjectsAccessible = allSubjectsAccessible(action);
+        boolean isAllSubjectsAccessible = this.allSubjectsAccessible(action);
         if (!isAllSubjectsAccessible)
           continue;
 
@@ -54,7 +65,9 @@ public class CustomActionCommand extends GameCommand {
 
     } catch (Exception e) {
       e.printStackTrace();
-      return "[Error] in execute: " + e.getMessage();
+      String errMsg = String.format("[Error] in execute: %s", e.getMessage());
+      System.out.printf(errMsg);
+      return errMsg;
     }
   }
 
@@ -104,7 +117,7 @@ public class CustomActionCommand extends GameCommand {
       if (consumed != null) {
         for (Map.Entry<String, String> entry : consumed.entrySet()) {
           String name = entry.getValue();
-          String error = consume(name);
+          String error = this.consume(name);
           if (error != null) {
             return error;
           }
@@ -115,7 +128,7 @@ public class CustomActionCommand extends GameCommand {
       if (produced != null) {
         for (Map.Entry<String, String> entry : produced.entrySet()) {
           String name = entry.getValue();
-          produce(name);
+          this.produce(name);
         }
       }
 

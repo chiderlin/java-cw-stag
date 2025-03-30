@@ -15,9 +15,16 @@ public class CmdHandler {
 
   public GameCommand parse(String command) {
     try {
-      String[] cmdStrings = command.split(":");
-      String username = cmdStrings[0];
-      String userCmdLowerCase = cmdStrings[1].trim().toLowerCase();
+      int colonIndex = command.indexOf(":");
+      if (colonIndex == -1) {
+        String errorMsg = String
+            .format("[Error] Invalid command format - missing ':'");
+        System.err.printf(errorMsg);
+        return new ErrorCommand(errorMsg);
+      }
+      String username = command.substring(0, colonIndex).trim();
+      String userCmdLowerCase = command.substring(colonIndex + 1).trim().toLowerCase();
+
       if (!username.matches("[A-Za-z\\s'-]+")) {
         String errorMsg = String
             .format("[Error] Invalid player name. Only letters, spaces, apostrophes and hyphens are allowed.");

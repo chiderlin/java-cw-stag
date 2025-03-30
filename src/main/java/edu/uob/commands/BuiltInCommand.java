@@ -4,8 +4,8 @@ import edu.uob.GameState;
 
 import java.util.Map;
 import java.util.Set;
-
 import java.util.HashMap;
+
 import edu.uob.entities.Player;
 import edu.uob.entities.GameEntity;
 import edu.uob.entities.Location;
@@ -21,7 +21,7 @@ public class BuiltInCommand extends GameCommand {
     super(cmd, p);
     this.state = state;
     this.gameMap = this.state.getGameMap();
-    initCommands();
+    this.initCommands();
   }
 
   private void initCommands() {
@@ -37,29 +37,42 @@ public class BuiltInCommand extends GameCommand {
   @Override
   public String execute() {
     try {
-      String[] tokens = this.cmd.trim().split("\\s+");
-      if (tokens.length == 0) {
+      String trimmed = this.cmd.trim();
+      int firstSpace = trimmed.indexOf(' ');
+
+      String action;
+      String argument = null;
+
+      if (firstSpace == -1) {
+        action = trimmed;
+      } else {
+        action = trimmed.substring(0, firstSpace);
+        argument = trimmed.substring(firstSpace + 1).trim();
+      }
+
+      if (action.isEmpty()) {
         return "[Error] Empty command.";
       }
 
-      String action = tokens[0];
       Command cmd = commandMap.get(action);
-      if (cmd == null)
+      if (cmd == null) {
         return "[Error] Unknown built-in command.";
+      }
 
+      // Validate argument count
       if (action.equals("get") || action.equals("drop") || action.equals("goto")) {
-        if (tokens.length != 2) {
+        if (argument == null || argument.isEmpty() || argument.contains(" ")) {
           String errMsg = String.format("[Error] %s command requires exactly one argument.", action);
-          System.out.printf(errMsg);
+          System.out.println(errMsg);
           return errMsg;
         }
-        this.currentArg = tokens[1].trim();
+        this.currentArg = argument;
       }
 
       if ((action.equals("inv") || action.equals("inventory") || action.equals("look") || action.equals("health"))
-          && tokens.length != 1) {
+          && argument != null) {
         String errMsg = String.format("[Error] %s command should not have extra arguments.", action);
-        System.out.printf(errMsg);
+        System.out.println(errMsg);
         return errMsg;
       }
 
@@ -97,7 +110,7 @@ public class BuiltInCommand extends GameCommand {
       Map<String, GameEntity> characters = gameMap.get(locationName).getCharacters();
 
       Set<String> paths = gameMap.get(locationName).getConnectedLocations();
-      String res = generateResponceText(location, artefacts, furniture, characters, paths);
+      String res = BuiltInCommand.this.generateResponceText(location, artefacts, furniture, characters, paths);
       return res;
     }
   }
@@ -141,7 +154,7 @@ public class BuiltInCommand extends GameCommand {
       // set player currentlocation
       currentPlayer.setCurrentLocation(toLocation);
 
-      String res = generateResponceText(toLocation, artefacts, furniture, characters, paths);
+      String res = BuiltInCommand.this.generateResponceText(toLocation, artefacts, furniture, characters, paths);
       return res;
     }
   }

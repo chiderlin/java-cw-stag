@@ -30,17 +30,32 @@ public class EntityParser {
 
         if (!location.getArtefacts().isEmpty()) {
           System.out.println("  💎 Artefacts:");
-          location.getArtefacts().forEach((k, v) -> System.out.printf("    ▪ %s: %s\n", k, v.getDescription()));
+          Map<String, GameEntity> artefacts = location.getArtefacts();
+          for (Map.Entry<String, GameEntity> artefact : artefacts.entrySet()) {
+            String name = artefact.getKey();
+            String desc = artefact.getValue().getDescription();
+            System.out.printf("    ▪ %s: %s\n", name, desc);
+          }
         }
 
         if (!location.getFurniture().isEmpty()) {
           System.out.println("  🪑 Furniture:");
-          location.getFurniture().forEach((k, v) -> System.out.printf("    ▪ %s: %s\n", k, v.getDescription()));
+          Map<String, GameEntity> furniture = location.getFurniture();
+          for (Map.Entry<String, GameEntity> item : furniture.entrySet()) {
+            String name = item.getKey();
+            String desc = item.getValue().getDescription();
+            System.out.printf("    ▪ %s: %s\n", name, desc);
+          }
         }
 
         if (!location.getCharacters().isEmpty()) {
           System.out.println("  👤 Characters:");
-          location.getCharacters().forEach((k, v) -> System.out.printf("    ▪ %s: %s\n", k, v.getDescription()));
+          Map<String, GameEntity> characters = location.getCharacters();
+          for (Map.Entry<String, GameEntity> character : characters.entrySet()) {
+            String name = character.getKey();
+            String desc = character.getValue().getDescription();
+            System.out.printf("    ▪ %s: %s\n", name, desc);
+          }
         }
 
         System.out.println("------------------------------------------------");
@@ -48,7 +63,6 @@ public class EntityParser {
     } catch (Exception e) {
       System.err.printf("[Error] Failed to print entity structure: %s\n", e.getMessage());
     }
-
   }
 
   private void _printPath() {
@@ -73,24 +87,25 @@ public class EntityParser {
       FileReader reader = new FileReader(entitiesFile);
       parser.parse(reader);
       Graph wholeDocument = parser.getGraphs().get(0);
-      ArrayList<Graph> sections = wholeDocument.getSubgraphs();
+      List<Graph> sections = wholeDocument.getSubgraphs();
 
       this.parseLocations(sections);
       this.parsePath(sections);
 
       if (debugMode) {
-        _printEntityStructure();
-        _printPath();
+        this._printEntityStructure();
+        this._printPath();
       }
 
     } catch (FileNotFoundException | ParseException e) {
       System.err.printf("[Error] %s : %s", e.getClass().getSimpleName(), e.getMessage());
     }
 
-    return new GameWorld(gameMap, locationGraph, startLocation, storeroom, allEntitiesByName, entityTypesByName);
+    return new GameWorld(this.gameMap, this.locationGraph, this.startLocation, this.storeroom, this.allEntitiesByName,
+        this.entityTypesByName);
   }
 
-  private void parseLocations(ArrayList<Graph> sections) {
+  private void parseLocations(List<Graph> sections) {
     Graph locationSection = null;
     for (Graph g : sections) {
       if ("locations".equals(g.getId().getId())) {
@@ -104,7 +119,7 @@ public class EntityParser {
       return;
     }
 
-    ArrayList<Graph> locations = locationSection.getSubgraphs();
+    List<Graph> locations = locationSection.getSubgraphs();
     for (int i = 0; i < locations.size(); i++) {
       Graph locationGraph = locations.get(i);
       // Node locationNode = locationGraph.getNodes(false).get(0);
@@ -124,7 +139,7 @@ public class EntityParser {
         this.storeroom = location;
       }
 
-      ArrayList<Graph> subSections = locationGraph.getSubgraphs();
+      List<Graph> subSections = locationGraph.getSubgraphs();
       for (Graph sub : subSections) {
         String subType = sub.getId().getId();
         for (Node entity : sub.getNodes(false)) {
@@ -160,8 +175,8 @@ public class EntityParser {
     }
   }
 
-  private void parsePath(ArrayList<Graph> sections) {
-    ArrayList<Edge> paths = sections.get(1).getEdges();
+  private void parsePath(List<Graph> sections) {
+    List<Edge> paths = sections.get(1).getEdges();
     for (Edge path : paths) {
       String fromName = path.getSource().getNode().getId().getId();
       String toName = path.getTarget().getNode().getId().getId();
@@ -179,7 +194,7 @@ public class EntityParser {
 
   public void parseAll(Queue<File> files) {
     while (!files.isEmpty()) {
-      parse(files.poll(), true);
+      this.parse(files.poll(), true);
     }
     System.out.printf("Finish loading All Actions Files.");
   }
