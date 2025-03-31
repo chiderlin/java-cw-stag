@@ -15,8 +15,8 @@ class ExampleSTAGTests {
   // Create a new server _before_ every @Test
   @BeforeEach
   void setup() {
-    File entitiesFile = new File("config", "basic-entities.dot").getAbsoluteFile();
-    File actionsFile = new File("config", "basic-actions.xml").getAbsoluteFile();
+    File entitiesFile = new File("config", "extended-entities.dot").getAbsoluteFile();
+    File actionsFile = new File("config", "extended-actions.xml").getAbsoluteFile();
     server = new GameServer(entitiesFile, actionsFile);
   }
 
@@ -184,6 +184,30 @@ class ExampleSTAGTests {
 
     String response3 = sendCommandToServer("okay-name: look");
     assertFalse(response3.toLowerCase().contains("error"));
+  }
+
+  @Test
+  void testProduceItemFromAnyWhere() {
+    sendCommandToServer("simon: get axe");
+    sendCommandToServer("simon: goto forest");
+    sendCommandToServer("simon: cut tree");
+    String response = sendCommandToServer("simon: look");
+    sendCommandToServer("simon: get log");
+    sendCommandToServer("simon: goto riverbank");
+    sendCommandToServer("simon: get horn");
+    response = sendCommandToServer("simon: blow horn");
+    response = sendCommandToServer("simon: look");
+    assertTrue(response.contains("cutter"));
+    sendCommandToServer("simon: goto forest");
+    sendCommandToServer("simon: blow horn");
+    response = sendCommandToServer("simon: look");
+    response = response.toLowerCase();
+    assertTrue(response.contains("cutter"));
+    sendCommandToServer("simon: goto cellar");
+    sendCommandToServer("simon: blow horn");
+    response = sendCommandToServer("simon: look");
+    response = response.toLowerCase();
+    assertTrue(response.contains("cutter"));
   }
 
 }

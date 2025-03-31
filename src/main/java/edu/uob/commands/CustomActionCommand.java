@@ -213,7 +213,20 @@ public class CustomActionCommand extends GameCommand {
 
       GameEntity item = this.state.getEntity(name);
       if (item != null) {
-        this.state.getStoreroom().removeEntity(item);
+        boolean isInStoreRoom = this.state.getStoreroom().containsEntity(name);
+        if (isInStoreRoom) {
+          this.state.getStoreroom().removeEntity(item);
+        } else {
+          // look for all locations
+          Map<String, Location> gameMap = this.state.getGameMap();
+          for (Map.Entry<String, Location> entry : gameMap.entrySet()) {
+            Location getEachLocation = entry.getValue();
+            if (getEachLocation.containsEntity(name)) {
+              getEachLocation.removeEntity(item);
+            }
+          }
+        }
+
         this.player.getCurrentLocation().addEntity(item);
         return;
       }
